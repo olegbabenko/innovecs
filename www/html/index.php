@@ -1,3 +1,3 @@
 <?php
 
-echo 'My test project for Innovecs!';
+require_once '../src/CoreBundle/Config/Bootstrap.php';
