@@ -4,6 +4,8 @@ namespace WebBundle\Controller;
 
 use CoreBundle\Controller\Controller;
 use WebBundle\Model\Transaction;
+use WebBundle\Model\User;
+use WebBundle\Dictionary\Users;
 
 /**
  * Class TransactionController
@@ -18,6 +20,11 @@ class TransactionController extends Controller
     private  $transactionModel;
 
     /**
+     * @var
+     */
+    private $userModel;
+
+    /**
      * TransactionController constructor.
      */
     public function __construct()
@@ -25,10 +32,32 @@ class TransactionController extends Controller
         parent::__construct();
 
         $this->transactionModel = new Transaction();
+        $this->userModel = new User();
     }
 
-    public function index()
+
+    /**
+     * @return array|null
+     *
+     * @throws \Exception
+     */
+    public function index(): ?array
     {
-        return $this->transactionModel->getAll();
+        $result = null;
+        $userId = null;
+
+        if ($_REQUEST && array_key_exists(Users::EMAIL, $_REQUEST)){
+            $userId = $this->userModel->getUserId($_REQUEST[Users::EMAIL]);
+        } else {
+            throw new \Exception(sprintf('Parameter %s does not exist', Users::EMAIL));
+        }
+
+        if ($userId && array_key_exists(Users::AMOUNT, $_REQUEST)){
+            $result = $this->transactionModel->addTransaction($userId, $_REQUEST[Users::AMOUNT]);
+        } else {
+            throw new \Exception(sprintf('Parameter %s does not exist', Users::AMOUNT));
+        }
+
+        return $result;
     }
 }

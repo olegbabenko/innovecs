@@ -40,4 +40,29 @@ class DataBase
     {
         return $this->db->get($name);
     }
+
+    /**
+     * @param $table
+     * @param $column
+     * @param $value
+     *
+     * @return array
+     */
+    public function getBy($table, $column, $value): array
+    {
+        $this->db->where($column, $value);
+
+        return $this->db->getOne($table);
+    }
+
+    /**
+     * @param string $table
+     * @param array  $data
+     *
+     * @return bool
+     */
+    public function add(string $table, array $data): bool
+    {
+        return $this->db->insert($table, $data);
+    }
 }
