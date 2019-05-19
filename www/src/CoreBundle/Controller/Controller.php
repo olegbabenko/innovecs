@@ -7,7 +7,7 @@ namespace CoreBundle\Controller;
  *
  * @package CoreBundle\Controller
  */
-class Controller
+abstract class Controller
 {
     /**
      * @var
@@ -26,4 +26,6 @@ class Controller
     {
         $this->view = new View();
     }
+
+    abstract public function index();
 }

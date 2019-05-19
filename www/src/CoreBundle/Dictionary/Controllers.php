@@ -18,4 +18,9 @@ class Controllers
      * @const string
      */
     public const APP_ACTION = 'index';
+
+    /**
+     * @const string
+     */
+    public const TRANSACTION = 'Transaction';
 }
