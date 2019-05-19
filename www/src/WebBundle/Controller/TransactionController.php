@@ -3,6 +3,7 @@
 namespace WebBundle\Controller;
 
 use CoreBundle\Controller\Controller;
+use WebBundle\Model\Transaction;
 
 /**
  * Class TransactionController
@@ -11,10 +12,23 @@ use CoreBundle\Controller\Controller;
  */
 class TransactionController extends Controller
 {
+    /**
+     * @var Transaction
+     */
+    private  $transactionModel;
+
+    /**
+     * TransactionController constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->transactionModel = new Transaction();
+    }
 
     public function index()
     {
-        echo 'trans is alive';
+        return $this->transactionModel->getAll();
     }
-
 }

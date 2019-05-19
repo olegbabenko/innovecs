@@ -2,9 +2,11 @@
 
 require_once '../../src/CoreBundle/Dictionary/Controllers.php';
 require_once '../../src/CoreBundle/Dictionary/Settings.php';
+require_once '../../vendor/autoload.php';
 
 require_once '../../src/CoreBundle/Config/Config.php';
 require_once '../../src/CoreBundle/Config/Env.php';
+require_once '../../src/CoreBundle/Config/DataBase.php';
 
 require_once '../../src/CoreBundle/Controller/Controller.php';
 require_once '../../src/CoreBundle/Controller/RouteParser.php';
